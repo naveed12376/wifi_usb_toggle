@@ -9,9 +9,9 @@ No installation is required — just run the scripts with administrator access.
 
 📁 Project Structure
 📁 files
- ├── on.bat
- ├── off.bat
- |___ readme.txt
+├── on.bat
+├── off.bat
+|___ readme.txt
 ⚙️ What It Does
 
 These scripts control:
