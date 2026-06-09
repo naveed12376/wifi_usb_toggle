@@ -1,89 +1,186 @@
-# wifi_usb_toggle
-Windows batch scripts to enable/disable Wi-Fi adapters and USB storage access using netsh and Windows Registry commands. Useful for quick system control and automation tasks.
+# Windows Device Toggle (Wi-Fi + USB Control)
 
-Windows Device Toggle (Wi-Fi + USB Control)
+A lightweight Windows utility that allows you to quickly **enable or disable Wi-Fi and USB storage devices** using simple batch scripts.
 
-This repository provides two simple batch scripts to quickly enable or disable Wi-Fi and USB storage on Windows.
+No installation, dependencies, or additional software are required.
 
-No installation is required — just run the scripts with administrator access.
+---
 
-📁 Project Structure
-📁 files
-├── on.bat
-├── off.bat
-|___ readme.txt
-⚙️ What It Does
+## Features
 
-These scripts control:
+* Enable or disable Wi-Fi with a single click
+* Enable or disable USB storage access
+* No installation required
+* Lightweight and portable
+* Supports desktop shortcuts and keyboard hotkeys
+* Useful for automation, security, and quick device management
 
-Wi-Fi adapter state (enable/disable)
-USB storage access via Windows Registry
-Internal Commands Used:
+---
+
+## Project Structure
+
+```text
+files/
+├── on.bat      # Enable Wi-Fi and USB storage
+├── off.bat     # Disable Wi-Fi and USB storage
+└── README.md
+```
+
+---
+
+## How It Works
+
+The scripts perform two actions:
+
+### Wi-Fi Control
+
+Enable Wi-Fi:
+
+```cmd
 netsh interface set interface "Wi-Fi" admin=enable
+```
+
+Disable Wi-Fi:
+
+```cmd
 netsh interface set interface "Wi-Fi" admin=disable
+```
 
+### USB Storage Control
+
+Enable USB storage:
+
+```cmd
 reg add HKLM\SYSTEM\CurrentControlSet\Services\USBSTOR /v Start /t REG_DWORD /d 3 /f
+```
+
+Disable USB storage:
+
+```cmd
 reg add HKLM\SYSTEM\CurrentControlSet\Services\USBSTOR /v Start /t REG_DWORD /d 4 /f
-🚀 How to Use (Recommended Method)
-1. Run the Scripts Manually (Basic Method)
-Go to files/ folder
-Right-click on.bat or off.bat
-Select Run as Administrator
-⚡ Create Desktop Shortcut (Recommended for Fast Access)
-Step 1: Create Shortcut
-Right-click on.bat or off.bat
-Click Create Shortcut
-Move the shortcut to Desktop (optional)
-Step 2: Run as Administrator Always
-Right-click the shortcut
-Click Properties
-Click Advanced
-Enable:
-✔ Run as administrator
-Step 3: Assign Keyboard Shortcut (Hotkey)
-Open shortcut Properties
-Click the Shortcut Key field
-Press your desired key combo (example: Ctrl + Alt + O)
-Click Apply
+```
 
-Now you can toggle Wi-Fi + USB instantly using keyboard shortcuts.
+---
 
-🎨 Optional: Change Icon
-Right-click shortcut → Properties
-Click Change Icon
-Choose any .ico file or system icon
-Apply changes
-⚠️ Important Notes
-1. Wi-Fi Adapter Name May Differ
+## Usage
 
-If your system does not use "Wi-Fi" as adapter name, you must change it manually.
+### Method 1 – Run Directly
 
-Check your adapter name using:
+1. Open the `files` folder.
+2. Right-click `on.bat` or `off.bat`.
+3. Select **Run as Administrator**.
 
+---
+
+## Create Desktop Shortcuts (Recommended)
+
+### Step 1 – Create a Shortcut
+
+1. Right-click the batch file.
+2. Select **Create Shortcut**.
+3. Move the shortcut to the Desktop (optional).
+
+### Step 2 – Always Run as Administrator
+
+1. Right-click the shortcut.
+2. Select **Properties**.
+3. Click **Advanced**.
+4. Check:
+
+```text
+✓ Run as Administrator
+```
+
+5. Click **OK** and **Apply**.
+
+### Step 3 – Assign a Keyboard Shortcut
+
+1. Open shortcut **Properties**.
+2. Select the **Shortcut** tab.
+3. Click the **Shortcut Key** field.
+4. Press your preferred key combination.
+
+Example:
+
+```text
+Ctrl + Alt + O
+```
+
+5. Click **Apply**.
+
+You can now toggle Wi-Fi and USB access instantly using a keyboard shortcut.
+
+---
+
+## Customizing the Wi-Fi Adapter Name
+
+The scripts assume your wireless adapter is named:
+
+```text
+Wi-Fi
+```
+
+Some systems may use a different name.
+
+To view available interfaces:
+
+```cmd
 netsh interface show interface
+```
 
-Then update this line in the script:
+If necessary, update the scripts:
 
+```cmd
 netsh interface set interface "YOUR_ADAPTER_NAME" admin=enable
-2. Administrator Required
+netsh interface set interface "YOUR_ADAPTER_NAME" admin=disable
+```
 
-These scripts modify system settings:
+---
 
-Network adapter state
-Windows registry (USB storage control)
+## Administrator Privileges Required
 
-Always run as Administrator, or they will fail.
+These scripts modify:
 
-3. USB Effect
-USBSTOR = 3 → USB enabled
-USBSTOR = 4 → USB disabled
+* Network adapter status
+* Windows Registry settings
 
-A restart may sometimes be required for full effect.
+Because of this, they **must be run with Administrator privileges**.
 
-📌 Purpose
+Without elevated permissions, the commands will fail.
 
-This project is meant for:
+---
 
-Quick system control
-Automation practice
-Learning Windows batch + registry commands
+## USB Storage Behavior
+
+| Registry Value | Result               |
+| -------------- | -------------------- |
+| 3              | USB Storage Enabled  |
+| 4              | USB Storage Disabled |
+
+> Note: Some systems may require a restart or device reconnect for changes to take full effect.
+
+---
+
+## Use Cases
+
+This project can be useful for:
+
+* Quick device management
+* Temporary USB access restrictions
+* Productivity workflows
+* Classroom and lab environments
+* Automation experiments
+* Learning Windows batch scripting
+* Learning Windows Registry management
+
+---
+
+## Disclaimer
+
+This project modifies Windows network and registry settings. Use it responsibly and ensure you understand the effect of the commands before deploying in production or shared environments.
+
+---
+
+## License
+
+Free to use, modify, and distribute.
