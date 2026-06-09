@@ -184,3 +184,17 @@ This project modifies Windows network and registry settings. Use it responsibly 
 ## License
 
 Free to use, modify, and distribute.
+
+
+## Keywords
+
+Windows WiFi Toggle, Windows USB Control, Disable USB Storage Windows,
+Enable Disable WiFi Windows, USBSTOR, Windows Batch Script,
+Network Adapter Control, USB Access Control, Windows Automation,
+CMD Script, Windows Administration, Device Management
+
+## Author
+
+Developed and maintained by Naveed.
+
+GitHub: https://github.com/naveed12376
